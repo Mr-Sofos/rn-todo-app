@@ -17,6 +17,7 @@ export const AddTodo = ({ onSubmit }) => {
   return (
     <View style={styles.block}>
       <TextInput
+        placeholder='Please enter text'
         autoCapitalize='none'
         autoCorrect={false}
         style={styles.input}
