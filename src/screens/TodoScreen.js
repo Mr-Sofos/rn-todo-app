@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Button } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { FontAwesome, AntDesign } from "@expo/vector-icons";
 import { AppCard } from "../components/ui/AppCard";
 import { THEME } from "../theme";
 import { EditModal } from "../components/EditModal";
+import { AppTextBold } from "../components/ui/AppTextBold";
+import { AppButton } from "../components/ui/AppButton";
 
 export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
   const [modal, setModal] = useState(false);
@@ -19,20 +22,27 @@ export const TodoScreen = ({ goBack, todo, onRemove, onSave }) => {
         value={todo.title}
         onSave={saveHandler}
       />
-      <AppCard>
-        <Text style={styles.title}>{todo.title}</Text>
-        <Button title='Редактировать' onPress={() => setModal(true)} />
+
+      <AppCard style={styles.card}>
+        <AppTextBold style={styles.title}>{todo.title}</AppTextBold>
+        <AppButton onPress={() => setModal(true)}>
+          <FontAwesome name='edit' size={20} color='#fff' />
+        </AppButton>
       </AppCard>
+
       <View style={styles.buttons}>
         <View style={styles.button}>
-          <Button title='назад' onPress={goBack} color={THEME.GREY_COLOR} />
+          <AppButton onPress={goBack} color={THEME.GREY_COLOR}>
+            <AntDesign name='back' size={20} color='#fff' />
+          </AppButton>
         </View>
         <View style={styles.button}>
-          <Button
-            title='удалить'
+          <AppButton
             color={THEME.DANGER_COLOR}
             onPress={() => onRemove(todo.id)}
-          />
+          >
+            <FontAwesome name='remove' size={20} color='#fff' />
+          </AppButton>
         </View>
       </View>
     </View>
@@ -51,6 +61,8 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   card: {
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: 20,
     padding: 15,
   },
