@@ -10,7 +10,7 @@ export const ScreenState = ({ children }) => {
 
   return (
     <ScreenContext.Provider
-      values={{
+      value={{
         changeScreen,
         todoId: state,
       }}
